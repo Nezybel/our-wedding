@@ -463,5 +463,82 @@
     <br>
     Vert émeraude, or et ivoire
   </footer>
+  
+<script>
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxZyyeuWr2u98wdL4WyvNgELVPyQvbQvHloA6k47ECVBZPSG5VKyw69FPmKYAvaSVhP/exec";
+
+const photoInput = document.getElementById("weddingPhotos");
+const uploadButton = document.getElementById("uploadPhotos");
+const uploadStatus = document.getElementById("uploadStatus");
+
+uploadButton.addEventListener("click", async () => {
+  const files = Array.from(photoInput.files || []);
+
+  if (!files.length) {
+    uploadStatus.textContent =
+      "Please select at least one photo. / Veuillez choisir au moins une photo.";
+    return;
+  }
+
+  if (files.length > 5) {
+    uploadStatus.textContent =
+      "Please upload no more than 5 photos at a time. / Maximum 5 photos à la fois.";
+    return;
+  }
+
+  uploadButton.disabled = true;
+
+  try {
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+
+      if (!["image/jpeg", "image/png", "image/webp", "image/heic"].includes(file.type)) {
+        throw new Error(file.name + " is not a supported image.");
+      }
+
+      if (file.size > 5 * 1024 * 1024) {
+        throw new Error(file.name + " is larger than 5 MB.");
+      }
+
+      uploadStatus.textContent =
+        "Preparing photo " + (i + 1) + " of " + files.length + "...";
+
+      const base64 = await new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(String(reader.result).split(",")[1]);
+        reader.onerror = () => reject(new Error("Could not read " + file.name));
+        reader.readAsDataURL(file);
+      });
+
+      uploadStatus.textContent =
+        "Uploading photo " + (i + 1) + " of " + files.length + "...";
+
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "text/plain;charset=utf-8"
+        },
+        body: JSON.stringify({
+          fileName: file.name,
+          mimeType: file.type,
+          data: base64
+        })
+      });
+    }
+
+    uploadStatus.textContent =
+      "Upload request sent. Please check your Google Drive folder to confirm the photos arrived. / Demande envoyée. Vérifiez votre dossier Google Drive.";
+
+    photoInput.value = "";
+  } catch (error) {
+    uploadStatus.textContent =
+      "Upload failed: " + error.message +
+      " / Échec de l'envoi. Veuillez réessayer.";
+  } finally {
+    uploadButton.disabled = false;
+  }
+});
+</script>
 </body>
 </html>
