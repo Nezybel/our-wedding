@@ -457,6 +457,83 @@
   }
 }
 
+/* Wedding photo slideshow */
+.wedding-slideshow {
+  max-width: 850px;
+  margin: 35px auto;
+}
+
+.slideshow-frame {
+  position: relative;
+  overflow: hidden;
+  background: #022c22;
+  border: 4px solid #c99127;
+  aspect-ratio: 16 / 10;
+}
+
+.slideshow-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.slideshow-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border: 1px solid #e8c875;
+  border-radius: 50%;
+  background: rgba(2, 44, 34, 0.88);
+  color: #fffaf0;
+  font-size: 27px;
+  cursor: pointer;
+}
+
+.slideshow-prev { left: 12px; }
+.slideshow-next { right: 12px; }
+
+.slideshow-caption {
+  margin: 14px 0;
+  color: #064e3b;
+  font-style: italic;
+}
+
+.slideshow-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 18px 0;
+}
+
+.slideshow-dot {
+  width: 11px;
+  height: 11px;
+  padding: 0;
+  border: 1px solid #c99127;
+  border-radius: 50%;
+  background: #e8dfca;
+  cursor: pointer;
+}
+
+.slideshow-dot.active {
+  background: #064e3b;
+  outline: 2px solid #c99127;
+}
+
+@media (max-width: 600px) {
+  .slideshow-frame {
+    aspect-ratio: 4 / 3;
+  }
+
+  .slideshow-arrow {
+    width: 38px;
+    height: 38px;
+  }
+}
+
   </style>
 </head>
 
@@ -699,30 +776,43 @@
   </p>
 
   <div class="couple-gallery-grid">
-    <div class="couple-gallery-item">
-      <img src="images/couple1.jpeg"
-           alt="Evanie and Sosthene together"
-           loading="lazy">
-    </div>
 
-    <div class="couple-gallery-item">
-      <img src="images/couple2.jpeg"
-           alt="A special moment for the couple"
-           loading="lazy">
-    </div>
+<div class="wedding-slideshow">
+  <div class="slideshow-frame">
+    <img
+      id="slideshow-image"
+      src="images/couple1.jpeg"
+      alt="Evanie and Sosthene together"
+    >
 
-    <div class="couple-gallery-item">
-      <img src="images/couple3.jpeg"
-           alt="A treasured memory of the couple"
-           loading="lazy">
-    </div>
+    <button
+      type="button"
+      class="slideshow-arrow slideshow-prev"
+      id="slideshow-prev"
+      aria-label="Previous photo"
+    >&#8249;</button>
 
-    <div class="couple-gallery-item">
-      <img src="images/couple4.jpeg"
-           alt="Evanie and Sosthene's love story"
-           loading="lazy">
-    </div>
+    <button
+      type="button"
+      class="slideshow-arrow slideshow-next"
+      id="slideshow-next"
+      aria-label="Next photo"
+    >&#8250;</button>
   </div>
+
+  <p class="slideshow-caption" id="slideshow-caption">
+    A beautiful memory of Evanie &amp; Sosthene
+  </p>
+
+  <div class="slideshow-dots" id="slideshow-dots">
+    <button class="slideshow-dot active" aria-label="Show photo 1" type="button"></button>
+    <button class="slideshow-dot" aria-label="Show photo 2" type="button"></button>
+    <button class="slideshow-dot" aria-label="Show photo 3" type="button"></button>
+    <button class="slideshow-dot" aria-label="Show photo 4" type="button"></button>
+  </div>
+</div>
+
+    
 </div>
 
     </section>
@@ -878,6 +968,82 @@ uploadButton.addEventListener("click", async () => {
 
   updateCountdown();
   setInterval(updateCountdown, 1000);
+})();
+</script>
+
+<script>
+(function () {
+  const photos = [
+    {
+      src: "images/couple1.jpeg",
+      alt: "Evanie and Sosthene together",
+      caption: "A beautiful memory of Evanie & Sosthene"
+    },
+    {
+      src: "images/couple2.jpeg",
+      alt: "A special moment for the couple",
+      caption: "Two hearts, one story"
+    },
+    {
+      src: "images/couple3.jpeg",
+      alt: "A treasured couple memory",
+      caption: "A love story worth celebrating"
+    },
+    {
+      src: "images/couple4.jpeg",
+      alt: "Evanie and Sosthene's love story",
+      caption: "Forever begins with us"
+    }
+  ];
+
+  const image = document.getElementById("slideshow-image");
+  const caption = document.getElementById("slideshow-caption");
+  const dotsContainer = document.getElementById("slideshow-dots");
+  const previous = document.getElementById("slideshow-prev");
+  const next = document.getElementById("slideshow-next");
+
+  if (!image || !caption || !dotsContainer || !previous || !next) return;
+
+  let current = 0;
+  let timer;
+
+  dotsContainer.innerHTML = "";
+
+  photos.forEach((photo, index) => {
+    const dot = document.createElement("button");
+    dot.type = "button";
+    dot.className = "slideshow-dot";
+    dot.setAttribute("aria-label", "Show photo " + (index + 1));
+    dot.addEventListener("click", () => showPhoto(index));
+    dotsContainer.appendChild(dot);
+  });
+
+  function showPhoto(index) {
+    current = (index + photos.length) % photos.length;
+
+    image.src = photos[current].src;
+    image.alt = photos[current].alt;
+    caption.textContent = photos[current].caption;
+
+    Array.from(dotsContainer.children).forEach((dot, i) => {
+      dot.classList.toggle("active", i === current);
+      dot.setAttribute("aria-current", i === current ? "true" : "false");
+    });
+
+    restartTimer();
+  }
+
+  function restartTimer() {
+    clearInterval(timer);
+    timer = setInterval(() => {
+      showPhoto(current + 1);
+    }, 4000);
+  }
+
+  previous.addEventListener("click", () => showPhoto(current - 1));
+  next.addEventListener("click", () => showPhoto(current + 1));
+
+  showPhoto(0);
 })();
 </script>
 
