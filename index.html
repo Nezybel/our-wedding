@@ -391,6 +391,72 @@
     background-position: center center;
   }
 }
+    
+/* Elegant couple photo gallery */
+.couple-gallery {
+  background: #fffaf0;
+  padding: 65px 20px;
+}
+
+.couple-gallery-intro {
+  max-width: 650px;
+  margin: 0 auto 35px;
+  line-height: 1.9;
+  color: #526454;
+}
+
+.couple-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  max-width: 950px;
+  margin: 35px auto 0;
+}
+
+.couple-gallery-item {
+  overflow: hidden;
+  border: 3px solid #c99127;
+  background: #f1ead8;
+  border-radius: 3px;
+  min-height: 220px;
+}
+
+.couple-gallery-item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 220px;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.couple-gallery-item:hover img {
+  transform: scale(1.04);
+}
+
+.couple-gallery-item:first-child {
+  grid-column: span 2;
+}
+
+.couple-gallery-item:first-child img {
+  height: 420px;
+}
+
+@media (max-width: 600px) {
+  .couple-gallery-grid {
+    gap: 10px;
+  }
+
+  .couple-gallery-item,
+  .couple-gallery-item img {
+    min-height: 150px;
+  }
+
+  .couple-gallery-item:first-child img {
+    height: 250px;
+  }
+}
+
   </style>
 </head>
 
@@ -613,6 +679,50 @@
     <br>
     Sélectionnez vos photos pour commencer.
   </p>
+</div>
+
+<div class="couple-gallery">
+  <div class="eyebrow">Our favourite moments</div>
+
+  <h2 class="section-title">
+    Two Hearts, One Story
+  </h2>
+
+  <div class="gold-line"></div>
+
+  <p class="couple-gallery-intro">
+    Every photograph tells a little part of our love story.
+    We can't wait to begin this new chapter together.
+    <br>
+    Chaque photo raconte une partie de notre histoire d'amour.
+    Nous avons hâte de commencer ce nouveau chapitre ensemble.
+  </p>
+
+  <div class="couple-gallery-grid">
+    <div class="couple-gallery-item">
+      <img src="images/couple1.jpeg"
+           alt="Evanie and Sosthene together"
+           loading="lazy">
+    </div>
+
+    <div class="couple-gallery-item">
+      <img src="images/couple2.jpeg"
+           alt="A special moment for the couple"
+           loading="lazy">
+    </div>
+
+    <div class="couple-gallery-item">
+      <img src="images/couple3.jpeg"
+           alt="A treasured memory of the couple"
+           loading="lazy">
+    </div>
+
+    <div class="couple-gallery-item">
+      <img src="images/couple4.jpeg"
+           alt="Evanie and Sosthene's love story"
+           loading="lazy">
+    </div>
+  </div>
 </div>
 
     </section>
