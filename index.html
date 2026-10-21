@@ -332,10 +332,94 @@
   }
 }
 
+/* Wedding couple hero photo */
+.couple-hero {
+  position: relative;
+  min-height: 620px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 70px 20px;
+  background:
+    linear-gradient(
+      rgba(0, 35, 25, 0.35),
+      rgba(0, 35, 25, 0.75)
+    ),
+    url("images/hero.jpg") center 35% / cover no-repeat;
+  color: #fffaf0;
+  text-align: center;
+}
+
+.couple-hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 850px;
+}
+
+.couple-hero-label {
+  color: #f1d58c;
+  font-size: 13px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.couple-hero h1 {
+  font-family: Georgia, serif;
+  font-size: clamp(46px, 9vw, 90px);
+  font-weight: normal;
+  line-height: 1.15;
+  margin: 24px 0;
+  color: #fffaf0;
+}
+
+.couple-hero-date {
+  color: #f1d58c;
+  font-size: 17px;
+  letter-spacing: 3px;
+}
+
+.couple-hero-divider {
+  width: 100px;
+  height: 2px;
+  background: #d4af37;
+  margin: 25px auto;
+}
+
+@media (max-width: 600px) {
+  .couple-hero {
+    min-height: 540px;
+    background-position: center center;
+  }
+}
   </style>
 </head>
 
 <body>
+  
+<section class="couple-hero">
+  <div class="couple-hero-content">
+    <p class="couple-hero-label">
+      Together with our families
+    </p>
+
+    <h1>Evanie &amp; Sosthene</h1>
+
+    <div class="couple-hero-divider"></div>
+
+    <p class="couple-hero-date">
+      12 DECEMBER 2026
+    </p>
+
+    <p>
+      Two hearts. One beautiful beginning.
+    </p>
+
+    <a href="#countdown" class="button">
+      Explore Our Wedding
+    </a>
+  </div>
+</section>
+
   <header class="topbar">
     Evanie & Sosthene · Our Wedding · Notre mariage
   </header>
