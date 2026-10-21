@@ -254,6 +254,84 @@
       .schedule-grid { grid-template-columns: 1fr; max-width: 420px; }
       section { padding: 50px 18px; }
     }
+    
+.countdown-section {
+  padding: 48px 18px;
+  background: #064e3b;
+  color: #fffaf0;
+  border-top: 3px solid #c99127;
+  border-bottom: 3px solid #c99127;
+}
+
+.countdown-label {
+  color: #e8c875;
+  letter-spacing: 4px;
+  font: 12px Arial, sans-serif;
+}
+
+.countdown-title {
+  font-size: clamp(26px, 5vw, 40px);
+  font-weight: normal;
+  margin: 15px 0;
+}
+
+.countdown-subtitle {
+  color: #f1dfad;
+  line-height: 1.8;
+}
+
+.countdown-timer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 30px auto 20px;
+}
+
+.countdown-unit {
+  width: 100px;
+  padding: 18px 8px;
+  background: #fffaf0;
+  color: #064e3b;
+  border: 1px solid #c99127;
+  border-radius: 5px;
+}
+
+.countdown-unit span {
+  display: block;
+  font: 36px Georgia, serif;
+  color: #064e3b;
+}
+
+.countdown-unit small {
+  display: block;
+  margin-top: 8px;
+  font: 10px Arial, sans-serif;
+  letter-spacing: 2px;
+  color: #9a6b16;
+}
+
+.countdown-message {
+  color: #f1dfad;
+  font-style: italic;
+  line-height: 1.8;
+}
+
+@media (max-width: 420px) {
+  .countdown-timer {
+    gap: 8px;
+  }
+
+  .countdown-unit {
+    width: 76px;
+    padding: 14px 5px;
+  }
+
+  .countdown-unit span {
+    font-size: 29px;
+  }
+}
+
   </style>
 </head>
 
@@ -570,5 +648,44 @@ uploadButton.addEventListener("click", async () => {
   }
 });
 </script>
+  
+<script>
+(function () {
+  const weddingDate = new Date("2026-12-12T09:30:00+01:00").getTime();
+
+  function updateCountdown() {
+    const now = Date.now();
+    let remaining = weddingDate - now;
+
+    const message = document.getElementById("countdown-message");
+
+    if (remaining <= 0) {
+      ["count-days", "count-hours", "count-minutes", "count-seconds"]
+        .forEach(id => document.getElementById(id).textContent = "00");
+
+      message.textContent = "Today is your beautiful wedding day! / Aujourd'hui, c'est votre grand jour !";
+      return;
+    }
+
+    const days = Math.floor(remaining / 86400000);
+    remaining %= 86400000;
+
+    const hours = Math.floor(remaining / 3600000);
+    remaining %= 3600000;
+
+    const minutes = Math.floor(remaining / 60000);
+    const seconds = Math.floor((remaining % 60000) / 1000);
+
+    document.getElementById("count-days").textContent = String(days).padStart(2, "0");
+    document.getElementById("count-hours").textContent = String(hours).padStart(2, "0");
+    document.getElementById("count-minutes").textContent = String(minutes).padStart(2, "0");
+    document.getElementById("count-seconds").textContent = String(seconds).padStart(2, "0");
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+})();
+</script>
+
 </body>
 </html>
