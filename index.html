@@ -393,14 +393,36 @@
         chaque étreinte et chaque beau moment de notre mariage.
       </p>
 
-      <div class="gallery-placeholder">
-        <strong>Our Wedding Gallery · Notre galerie de mariage</strong>
-        <p>
-          Guest photo uploads will be available here soon.
-          <br>
-          Le partage des photos sera bientôt disponible ici.
-        </p>
-      </div>
+      
+<div class="gallery-placeholder">
+  <h3 style="color:#064e3b;">Wedding Photo Upload</h3>
+  <p>Share your favourite wedding memories with us.</p>
+  <p>Partagez vos plus beaux souvenirs de mariage.</p>
+
+  <input
+    type="file"
+    id="weddingPhotos"
+    accept="image/jpeg,image/png,image/webp,image/heic"
+    multiple
+    style="display:block;max-width:100%;margin:20px auto;"
+  >
+
+  <button
+    type="button"
+    class="button"
+    id="uploadPhotos"
+    style="cursor:pointer;"
+  >
+    Upload Photos · Envoyer les photos
+  </button>
+
+  <p id="uploadStatus" role="status" aria-live="polite">
+    Select your photos to get started.
+    <br>
+    Sélectionnez vos photos pour commencer.
+  </p>
+</div>
+
     </section>
 
     <section class="contact">
