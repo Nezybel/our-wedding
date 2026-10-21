@@ -5,203 +5,441 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#064e3b">
-  <title>Our Wedding | A Celebration of Love</title>
+  <title>Evanie & Sosthene | Wedding Celebration</title>
+  <meta name="description" content="Celebrate the wedding of Evanie and Sosthene on Saturday, 12 December 2026, in Yaoundé, Cameroon.">
   <style>
     :root {
-      --emerald: #064e3b;
-      --deep-green: #022c22;
-      --gold: #d4af37;
-      --cream: #fffaf0;
+      --green: #064e3b;
+      --deep: #022c22;
+      --gold: #c99127;
+      --ivory: #fffaf0;
+      --ink: #24472e;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
+      color: var(--ink);
+      background: var(--ivory);
       font-family: Georgia, "Times New Roman", serif;
-      background: var(--cream);
-      color: var(--deep-green);
       text-align: center;
     }
 
-    header {
-      padding: 18px;
-      background: var(--deep-green);
-      color: var(--gold);
-      letter-spacing: 3px;
-      font-size: 13px;
+    .topbar {
+      padding: 16px 12px;
+      background: var(--deep);
+      color: #e8c875;
+      letter-spacing: 2px;
+      font: 11px Arial, sans-serif;
+      text-transform: uppercase;
     }
 
     .hero {
-      min-height: 75vh;
+      min-height: 650px;
+      padding: 90px 22px 70px;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
-      padding: 60px 20px;
-      color: white;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
       background:
-        linear-gradient(135deg, rgba(2,44,34,.96),
-        rgba(6,78,59,.86));
-      border-bottom: 5px solid var(--gold);
+        radial-gradient(ellipse at 95% 5%, #c991272e, transparent 38%),
+        radial-gradient(ellipse at 5% 95%, #064e3b20, transparent 36%),
+        linear-gradient(145deg, #fffdf7, #f1ead9, #fffaf0);
+      border: 8px double #c9a65b;
+      outline: 1px solid #d7bc7c;
+      outline-offset: -17px;
+    }
+
+    .hero::before, .hero::after {
+      content: "❧";
+      position: absolute;
+      color: var(--gold);
+      font-size: 100px;
+      opacity: .65;
+      pointer-events: none;
+    }
+
+    .hero::before {
+      top: 20px;
+      left: 12px;
+      transform: rotate(-45deg);
+    }
+
+    .hero::after {
+      bottom: 12px;
+      right: 12px;
+      transform: rotate(135deg);
     }
 
     .eyebrow {
       color: var(--gold);
-      letter-spacing: 4px;
       text-transform: uppercase;
-      font-size: 12px;
+      letter-spacing: 3px;
+      font: 11px Arial, sans-serif;
     }
 
     h1 {
-      font-size: clamp(42px, 9vw, 78px);
+      color: #c98a27;
+      font-size: clamp(48px, 10vw, 86px);
+      line-height: 1.08;
       font-weight: normal;
-      margin: 22px 0;
-      line-height: 1.15;
+      font-style: italic;
+      margin: 28px 0 20px;
     }
 
-    .hero p {
-      font-size: 18px;
+    .intro {
+      max-width: 560px;
       line-height: 1.8;
-      max-width: 520px;
+      font-size: 17px;
+      margin: 0 auto 22px;
     }
 
-    .gold-line {
-      width: 90px;
-      height: 2px;
-      background: var(--gold);
-      margin: 18px auto;
-    }
-
-    section {
-      padding: 65px 20px;
-    }
-
-    h2 {
-      font-size: 32px;
-      font-weight: normal;
-      color: var(--emerald);
-    }
-
-    .details {
-      background: white;
-    }
-
-    .detail-card {
-      max-width: 520px;
-      margin: 30px auto;
-      padding: 30px 20px;
-      border: 1px solid var(--gold);
-      line-height: 1.9;
-    }
-
-    .label {
-      color: #92721b;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-size: 12px;
-    }
-
-    .gallery {
-      background: #f4edda;
-    }
-
-    .gallery-note {
-      max-width: 500px;
-      margin: 0 auto;
-      line-height: 1.8;
-    }
-
-    .upload-notice {
-      margin: 25px auto;
-      padding: 18px;
-      max-width: 500px;
-      border: 1px dashed var(--emerald);
-      border-radius: 8px;
+    .date-card {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      margin: 14px 0 10px;
+      color: var(--green);
       font-family: Arial, sans-serif;
-      font-size: 14px;
+    }
+
+    .date-side {
+      border-top: 1px solid var(--green);
+      border-bottom: 1px solid var(--green);
+      padding: 8px;
+      font-size: 12px;
+      letter-spacing: 1px;
       line-height: 1.7;
     }
 
-    footer {
-      padding: 28px 15px;
-      background: var(--deep-green);
+    .date-main { line-height: 1; }
+    .date-main .month { color: var(--gold); font-size: 18px; }
+
+    .date-main strong {
+      display: block;
+      font-size: 62px;
+      color: var(--green);
+    }
+
+    .date-main .year { color: var(--gold); font-size: 20px; }
+
+    .button {
+      display: inline-block;
+      padding: 13px 20px;
+      background: var(--green);
+      color: white;
+      border: 1px solid var(--gold);
+      text-decoration: none;
+      font: 13px Arial, sans-serif;
+      margin: 12px 4px 0;
+    }
+
+    section { padding: 65px 20px; }
+
+    .section-title {
+      font-weight: normal;
+      font-size: clamp(28px, 5vw, 40px);
+      color: var(--green);
+      margin: 13px 0;
+    }
+
+    .gold-line {
+      height: 2px;
+      width: 75px;
+      background: var(--gold);
+      margin: 20px auto;
+    }
+
+    .schedule { background: white; }
+
+    .schedule-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      max-width: 850px;
+      margin: 35px auto 0;
+    }
+
+    .event {
+      padding: 28px 18px;
+      border-top: 4px solid var(--green);
+      border-bottom: 1px solid #d7bc7c;
+      background: #fffdf8;
+    }
+
+    .event .time {
+      font: bold 14px Arial, sans-serif;
+      letter-spacing: 1px;
       color: var(--gold);
-      font-size: 13px;
+    }
+
+    .event h3 {
+      color: var(--green);
+      font-size: 21px;
+      font-weight: normal;
+      line-height: 1.5;
+    }
+
+    .event p { line-height: 1.8; }
+
+    .invitation { background: #f1ead8; }
+
+    .invitation-text {
+      max-width: 720px;
+      margin: auto;
+      line-height: 1.9;
+      font-size: 17px;
+    }
+
+    .bible {
+      color: var(--green);
+      font-style: italic;
+      font-size: 19px;
+      max-width: 680px;
+      margin: 25px auto 10px;
       line-height: 1.8;
     }
 
-    @media (max-width: 480px) {
-      section {
-        padding: 48px 18px;
-      }
+    .bible-ref {
+      color: var(--gold);
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
 
-      h2 {
-        font-size: 27px;
-      }
+    .gallery { background: var(--ivory); }
+
+    .gallery-note {
+      max-width: 600px;
+      margin: auto;
+      line-height: 1.8;
+    }
+
+    .gallery-placeholder {
+      max-width: 600px;
+      margin: 30px auto 0;
+      border: 1px dashed var(--gold);
+      padding: 28px 18px;
+      line-height: 1.8;
+      background: white;
+    }
+
+    .contact {
+      background: var(--green);
+      color: white;
+    }
+
+    .contact .section-title { color: #efd58b; }
+    .contact p { line-height: 1.8; overflow-wrap: anywhere; }
+    .contact a { color: #efd58b; }
+
+    footer {
+      background: var(--deep);
+      color: #e5c778;
+      padding: 27px 15px;
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    @media (max-width: 600px) {
+      .hero { min-height: 600px; padding: 75px 22px; }
+      .hero::before, .hero::after { font-size: 70px; }
+      .date-card { gap: 7px; }
+      .date-side { padding: 7px 4px; font-size: 10px; }
+      .date-main strong { font-size: 52px; }
+      .schedule-grid { grid-template-columns: 1fr; max-width: 420px; }
+      section { padding: 50px 18px; }
     }
   </style>
 </head>
+
 <body>
-  <header>
-    OUR WEDDING CELEBRATION
+  <header class="topbar">
+    Evanie & Sosthene · Our Wedding · Notre mariage
   </header>
 
   <main>
     <section class="hero">
       <div class="eyebrow">Two hearts, one beautiful story</div>
-      <h1>Our Forever<br>Begins Here</h1>
-      <div class="gold-line"></div>
-      <p>
-        Together with our loved ones, we invite you
-        to celebrate a day filled with love, joy and
-        unforgettable memories.
+      <h1>Evanie<br>&amp;<br>Sosthene</h1>
+
+      <p class="intro">
+        With grateful hearts, we invite you to celebrate
+        the beginning of our forever.
+        <br>
+        Avec des cœurs reconnaissants, nous vous invitons
+        à célébrer le début de notre vie à deux.
       </p>
-      <p style="color: #e6cc75;">A love story worth celebrating.</p>
+
+      <div class="date-card">
+        <div class="date-side">SATURDAY<br>SAMEDI</div>
+        <div class="date-main">
+          <span class="month">DEC / DÉC</span>
+          <strong>12</strong>
+          <span class="year">2026</span>
+        </div>
+        <div class="date-side">9:30 AM<br>09H30</div>
+      </div>
+
+      <a class="button" href="#schedule">
+        Wedding programme · Programme
+      </a>
     </section>
 
-    <section class="details">
-      <div class="eyebrow">Save the date</div>
-      <h2>The Wedding Celebration</h2>
+    <section class="schedule" id="schedule">
+      <div class="eyebrow">Save the date · Réservez la date</div>
+      <h2 class="section-title">
+        Our Wedding Day<br>Notre jour de mariage
+      </h2>
       <div class="gold-line"></div>
-      <div class="detail-card">
-        <div class="label">Wedding date</div>
-        <p>Our special day is coming soon.</p>
-        <div class="label">Venue</div>
-        <p>Wedding venue details will be announced here.</p>
-        <div class="label">Time</div>
-        <p>Celebration time to be confirmed.</p>
+
+      <div class="schedule-grid">
+        <article class="event">
+          <div class="time">09:30 AM · 09H30</div>
+          <h3>Civil Wedding<br>Mariage civil</h3>
+          <p>
+            Mairie d'Ékounou<br>
+            Yaoundé 4, Cameroon<br>Cameroun
+          </p>
+        </article>
+
+        <article class="event">
+          <div class="time">12:30 PM · 12H30</div>
+          <h3>Church Wedding<br>Mariage à l'église</h3>
+          <p>
+            Espace Vert<br>
+            Carrefour Mbombo
+          </p>
+        </article>
+
+        <article class="event">
+          <div class="time">02:30 PM · 14H30</div>
+          <h3>Cocktail Hour<br>Vin d'honneur</h3>
+          <p>
+            Immediately after the church ceremony,
+            before the reception.
+            <br>
+            Après la cérémonie religieuse,
+            avant la réception.
+          </p>
+        </article>
+
+        <article class="event">
+          <div class="time">07:00 PM · 19H00</div>
+          <h3>Wedding Reception<br>Réception de mariage</h3>
+          <p>
+            L'Hôtel Xaviera<br>
+            Tropicana, Yaoundé, Cameroon<br>
+            Tropicana, Yaoundé, Cameroun
+          </p>
+        </article>
       </div>
     </section>
 
-    <section class="gallery">
-      <div class="eyebrow">Our memories</div>
-      <h2>Share the Love</h2>
+    <section class="invitation">
+      <div class="eyebrow">An invitation from the heart</div>
+      <h2 class="section-title">
+        Invitation Note<br>Mot d'invitation
+      </h2>
       <div class="gold-line"></div>
-      <p class="gallery-note">
-        Every smile, every embrace and every moment
-        deserves to be remembered. This is where our
-        wedding memories will come together.
+
+      <p class="invitation-text">
+        In gratitude to God for His blessings, the
+        <strong>MOUAFO and WA families</strong> are delighted
+        to invite you to celebrate their children's wedding.
+        We invite you to witness this blessed union and share
+        a day filled with love, faith and fellowship.
+        <br><br>
+        Dans la gratitude envers Dieu pour ses bénédictions,
+        les familles <strong>MOUAFO et WA</strong> ont la joie
+        de vous inviter à célébrer le mariage de leurs enfants.
+        Nous vous invitons à être témoins de cette union bénie
+        et à partager une journée remplie d'amour, de foi
+        et de fraternité.
       </p>
-      <div class="upload-notice">
-        <strong>Our Wedding Photo Gallery</strong>
+
+      <div class="gold-line"></div>
+      <div class="eyebrow">Our Bible verse · Notre verset biblique</div>
+
+      <p class="bible">
+        “Where you go I will go, and where you stay I will stay.
+        Your people will be my people and your God my God.”
+      </p>
+
+      <p class="bible">
+        « Où tu iras j'irai, où tu demeureras je demeurerai ;
+        ton peuple sera mon peuple, et ton Dieu sera mon Dieu. »
+      </p>
+
+      <p class="bible-ref">RUTH 1:16 · RUTH 1:16</p>
+    </section>
+
+    <section class="gallery" id="gallery">
+      <div class="eyebrow">Memories together · Nos souvenirs</div>
+      <h2 class="section-title">
+        Share the Love<br>Partageons l'amour
+      </h2>
+      <div class="gold-line"></div>
+
+      <p class="gallery-note">
+        Help us preserve every smile, every embrace and
+        every beautiful moment of our wedding.
+        <br>
+        Aidons-nous à garder en mémoire chaque sourire,
+        chaque étreinte et chaque beau moment de notre mariage.
+      </p>
+
+      <div class="gallery-placeholder">
+        <strong>Our Wedding Gallery · Notre galerie de mariage</strong>
         <p>
-          The shared photo gallery will be connected
-          in a later step so guests can contribute
-          their favourite memories.
+          Guest photo uploads will be available here soon.
+          <br>
+          Le partage des photos sera bientôt disponible ici.
         </p>
       </div>
+    </section>
+
+    <section class="contact">
+      <div class="eyebrow">Celebrate with us · Célébrez avec nous</div>
+      <h2 class="section-title">RSVP · Confirmation</h2>
+      <div class="gold-line"></div>
+
+      <p>
+        Please contact our representatives to confirm your attendance.
+        <br>
+        Veuillez contacter nos représentants pour confirmer votre présence.
+      </p>
+
+      <p>
+        <strong>Nguelewe Frannel</strong><br>
+        <a href="tel:+237683524646">+237 683 524 646</a>
+      </p>
+
+      <p>
+        <strong>Ulrich Kenne</strong><br>
+        <a href="tel:+237691892985">+237 691 892 985</a>
+      </p>
+
+      <p>
+        Gifts are greatly appreciated in cash.
+        <br>
+        Tous les dons seront grandement appréciés en espèces.
+      </p>
     </section>
   </main>
 
   <footer>
-    MADE WITH LOVE
+    MADE WITH LOVE · FAIT AVEC AMOUR
     <br>
-    Emerald Green &amp; Gold
+    Evanie &amp; Sosthene · 12 December 2026
     <br>
-    One day. A lifetime of memories.
+    Emerald Green, Gold &amp; Ivory
+    <br>
+    Vert émeraude, or et ivoire
   </footer>
 </body>
 </html>
